@@ -74,24 +74,32 @@ hotel-booking-platform/
 
 ## 使用该仓库
   **1) 克隆仓库**
+  ```
   git clone <repo-url>
   cd <repo-dir>
+```
 
   **2) 安装依赖**
+  ```
   pnpm install
+  ```
 
   **3) 生成 Prisma Client + 迁移数据库**
+  ```
   cd apps/server
   cp .env.example .env
   **修改 DATABASE_URL 后：**
   pnpm db:generate
   pnpm db:migrate
   cd ../..
+  ```
 
   **4) 分别开三个终端运行**
+  ```
   pnpm dev:server
   pnpm dev:pc
   pnpm --filter @hotel/user-mobile dev:h5
+  ```
 
 移动端目前仅完成h5，微信小程序还在完善测试中
 运行端口、移动端 API Host 与接口文档详见：`docs/REFERENCE.md`
