@@ -88,7 +88,7 @@ hotel-booking-platform/
   ```
   cd apps/server
   cp .env.example .env
-  **修改 DATABASE_URL 后：**
+   # 修改 DATABASE_URL 后：
   pnpm db:generate
   pnpm db:migrate
   cd ../..
