@@ -1,0 +1,25 @@
+# OS
+.DS_Store
+
+# Node
+node_modules/
+
+# Build outputs
+dist/
+build/
+
+# Logs
+*.log
+pnpm-debug.log*
+
+# Env
+.env
+.env.*
+
+# Uploads / runtime
+uploads/
+*.pid
+server.pid
+
+# Taro / Vite cache
+node_modules/.vite/

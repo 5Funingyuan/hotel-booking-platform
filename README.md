@@ -1,5 +1,5 @@
 # 易宿酒店预订平台🏨
-第五期携程训练营大作业的一个简陋版本，实现了一些基础功能，持续优化中，有问题欢迎在issues提出。
+第五期携程训练营22组大作业的一个简陋版本，实现了一些基础功能，持续优化中，有问题欢迎在issues提出。
 面向“用户端 + 商户端 + 服务端”的酒店预订平台，采用 pnpm monorepo多包管理，包含完整的酒店创建、审核发布、搜索筛选与房型管理流程。
 城市目前只支持省级行政区及其下方的地级市行政单位。
 
@@ -70,6 +70,32 @@ hotel-booking-platform/
 │   └── shared-utils/        # 共享工具函数
 └── package.json
 ```
+
+## 使用该仓库
+
+1. 克隆仓库：
+   ```bash
+   git clone <your-repo-url>
+   cd YiSu-HotelBooking
+   ```
+2. 安装依赖（Node.js >= 18、pnpm >= 8）：
+   ```bash
+   pnpm install
+   ```
+3. 配置数据库并启动服务端：
+   ```bash
+   cd apps/server
+   cp .env.example .env
+   # 修改 .env 中的 DATABASE_URL
+   pnpm db:migrate
+   pnpm dev
+   ```
+4. 启动商户端 / 移动端（回到根目录执行）：
+   ```bash
+   cd ../..
+   pnpm dev:pc
+   pnpm --filter @hotel/user-mobile dev:h5
+   ```
 
 ## 启动
 
@@ -172,5 +198,5 @@ pnpm --filter @hotel/user-mobile dev:h5
 - **audits**：审核记录表
 
 ## 开发者
-
+22组
 YuanFun
