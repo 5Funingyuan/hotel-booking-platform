@@ -139,6 +139,9 @@ importers:
       '@babel/runtime':
         specifier: ^7.26.0
         version: 7.28.6
+      '@hotel/shared-utils':
+        specifier: workspace:*
+        version: link:../../packages/shared-utils
       '@react-native-picker/picker':
         specifier: ^1.9.10
         version: 1.16.8(react-native@0.83.1(@babel/core@7.29.0)(@types/react@18.3.27)(react@18.3.1))(react@18.3.1)

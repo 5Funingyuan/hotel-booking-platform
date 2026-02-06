@@ -90,7 +90,7 @@ hotel-booking-platform/
    pnpm db:migrate
    pnpm dev
    ```
-4. 启动商户端 / 移动端（回到根目录执行）：
+4. 启动商户端（PC端） / 移动端（回到根目录执行）：
    ```bash
    cd ../..
    pnpm dev:pc

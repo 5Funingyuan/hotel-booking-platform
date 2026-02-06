@@ -33,6 +33,7 @@
   ],
   "author": "",
   "dependencies": {
+    "@hotel/shared-utils": "workspace:*",
     "@babel/runtime": "^7.26.0",
     "@react-native-picker/picker": "^1.9.10",
     "@tarojs/components": "3.6.23",
