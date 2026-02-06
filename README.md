@@ -43,7 +43,7 @@
 - 城市选择（热门/搜索/字母索引）
 - 日期选择、关键词搜索、星级/价格/标签筛选
 - 酒店列表分页、价格排序
-- 酒店详情、房型展示
+- 酒店详情、房型展示补充中...
 
 **商户端（PC）**
 - 登录 / 注册（商户 / 管理员角色）
@@ -73,22 +73,22 @@ hotel-booking-platform/
 ```
 
 ## 使用该仓库
- 1) 克隆
+  **1) 克隆仓库**
   git clone <repo-url>
   cd <repo-dir>
 
-  # 2) 安装依赖
+  **2) 安装依赖**
   pnpm install
 
-  # 3) 生成 Prisma Client + 迁移数据库
+  **3) 生成 Prisma Client + 迁移数据库**
   cd apps/server
   cp .env.example .env
-  # 修改 DATABASE_URL 后：
+  **修改 DATABASE_URL 后：**
   pnpm db:generate
   pnpm db:migrate
   cd ../..
 
-  # 4) 分别开三个终端运行
+  **4) 分别开三个终端运行**
   pnpm dev:server
   pnpm dev:pc
   pnpm --filter @hotel/user-mobile dev:h5
@@ -96,64 +96,6 @@ hotel-booking-platform/
 移动端目前仅完成h5，微信小程序还在完善测试中
 运行端口、移动端 API Host 与接口文档详见：`docs/REFERENCE.md`
 
-## 部署说明
-
-### 服务端
-1. 配置环境变量（示例如下）：
-   - `DATABASE_URL`（MySQL 连接串）
-   - `JWT_SECRET`
-   - `PORT`（默认 3000，推荐 3001）
-   - `UPLOAD_DIR`（可选，默认 `./uploads`）
-2. 运行迁移并生成 Prisma Client：
-   ```bash
-   pnpm --filter @hotel/server db:migrate
-   pnpm --filter @hotel/server db:generate
-   ```
-3. 构建与启动：
-   ```bash
-   pnpm --filter @hotel/server build
-   pnpm --filter @hotel/server start
-   ```
-
-### 商户端 PC
-1. 构建：
-   ```bash
-   pnpm --filter @hotel/merchant-pc build
-   ```
-2. 部署 `apps/merchant-pc/dist` 到静态服务器（Nginx/OSS/CDN 等）。
-3. 如需自定义后端地址，设置环境变量：
-   - `VITE_API_URL=http://your-domain/api`
-
-### 用户端（H5）
-1. 构建：
-   ```bash
-   pnpm --filter @hotel/user-mobile build:h5
-   ```
-2. 部署 `apps/user-mobile/dist` 到静态服务器。
-3. 如果后端不在同域，建议通过环境变量指定：
-   - `TARO_APP_API_HOST=your-domain`
-
-## 审核流程
-
-```
-商户创建 → 审核中 → 管理员审核
-                ↓
-        ┌───────┴───────┐
-      通过            不通过（显示原因）
-        ↓                ↓
-    已发布          退回修改
-        ↓                ↓
-    可下线          重新提交
-        ↓
-    已下线（可恢复）
-```
-
-## 数据库表结构
-
-- **users**：用户表（商户 / 管理员）
-- **hotels**：酒店表
-- **rooms**：房型表
-- **audits**：审核记录表
 
 ## 开发者
 22组
