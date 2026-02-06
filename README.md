@@ -1,5 +1,6 @@
 # 易宿酒店预订平台🏨
 第五期携程训练营22组大作业的一个简陋版本，实现了一些基础功能，持续优化中，有问题欢迎在issues提出。
+
 面向“用户端 + 商户端 + 服务端”的酒店预订平台，采用 pnpm monorepo多包管理，包含完整的酒店创建、审核发布、搜索筛选与房型管理流程。
 城市目前只支持省级行政区及其下方的地级市行政单位。
 
@@ -72,70 +73,27 @@ hotel-booking-platform/
 ```
 
 ## 使用该仓库
+ 1) 克隆
+  git clone <repo-url>
+  cd <repo-dir>
 
-1. 克隆仓库：
-   ```bash
-   git clone <your-repo-url>
-   cd YiSu-HotelBooking
-   ```
-2. 安装依赖（Node.js >= 18、pnpm >= 8）：
-   ```bash
-   pnpm install
-   ```
-3. 配置数据库并启动服务端：
-   ```bash
-   cd apps/server
-   cp .env.example .env
-   # 修改 .env 中的 DATABASE_URL
-   pnpm db:migrate
-   pnpm dev
-   ```
-4. 启动商户端（PC端） / 移动端（回到根目录执行）：
-   ```bash
-   cd ../..
-   pnpm dev:pc
-   pnpm --filter @hotel/user-mobile dev:h5
-   ```
+  # 2) 安装依赖
+  pnpm install
 
-## 启动
+  # 3) 生成 Prisma Client + 迁移数据库
+  cd apps/server
+  cp .env.example .env
+  # 修改 DATABASE_URL 后：
+  pnpm db:generate
+  pnpm db:migrate
+  cd ../..
 
-### 1. 安装依赖
+  # 4) 分别开三个终端运行
+  pnpm dev:server
+  pnpm dev:pc
+  pnpm --filter @hotel/user-mobile dev:h5
 
-```bash
-cd hotel-booking-platform
-pnpm install
-```
-
-### 2. 配置数据库
-
-```bash
-cd apps/server
-cp .env.example .env
-# 修改 .env 中的 DATABASE_URL
-pnpm db:migrate
-```
-
-### 3. 启动服务端
-
-```bash
-pnpm dev:server
-```
-
-### 4. 启动商户端 PC
-
-```bash
-pnpm dev:pc
-```
-
-### 5. 启动用户端（移动端）
-
-H5：
-```bash
-pnpm --filter @hotel/user-mobile dev:h5
-```
-
-微信小程序：开发中
-
+移动端目前仅完成h5，微信小程序还在完善测试中
 运行端口、移动端 API Host 与接口文档详见：`docs/REFERENCE.md`
 
 ## 部署说明
