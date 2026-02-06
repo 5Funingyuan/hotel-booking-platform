@@ -1,0 +1,153 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+enum UserRole {
+  MERCHANT
+  ADMIN
+}
+
+enum HotelStatus {
+  PENDING    // 审核中
+  APPROVED   // 已通过（已发布）
+  REJECTED   // 不通过
+  OFFLINE    // 已下线
+}
+
+enum StarLevel {
+  ECONOMY    // 经济型
+  COMFORT    // 舒适型
+  HIGH_END   // 高档型
+  LUXURY     // 豪华型
+}
+
+enum Tag {
+  FAMILY     // 亲子
+  LUXURY     // 豪华
+  FREE_PARKING // 免费停车
+  SEA_VIEW   // 海景
+  BREAKFAST  // 含早餐
+  FREE_CANCEL // 可取消
+}
+
+enum BedType {
+  SINGLE     // 单人床
+  DOUBLE     // 大床
+  TWIN       // 双床
+  QUEEN      //  queen size
+  KING       // king size
+}
+
+enum WindowType {
+  YES        // 有窗
+  NO         // 无窗
+  INNER      // 内窗
+}
+
+model User {
+  id        String   @id @default(uuid())
+  username  String   @unique
+  password  String
+  role      UserRole
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+  
+  // Relations
+  hotels    Hotel[]  @relation("MerchantHotels")
+  audits    Audit[]  @relation("AuditorAudits")
+  
+  @@map("users")
+}
+
+model Hotel {
+  id          String      @id @default(uuid())
+  name        String
+  starLevel   StarLevel   @map("star_level")
+  
+  // Address - 三级行政区划
+  province    String      @map("province")      // 省/直辖市/自治区
+  city        String      @map("city")          // 地级市
+  district    String?     @map("district")      // 区/县（可选）
+  address     String      @map("address")       // 详细街道地址
+  fullAddress String      @map("full_address")  // 完整地址（自动拼接）
+  
+  contactPhone String?    @map("contact_phone")
+  description String?     @db.Text
+  tags        String      @default("[]")  // JSON string of Tag[]
+  images      String      @default("[]")  // JSON string of String[]
+  mainImage   String?     @map("main_image")
+  status      HotelStatus @default(PENDING)
+  
+  // Location
+  latitude    Float?
+  longitude   Float?
+  
+  // Audit info
+  auditReason String?     @map("audit_reason") @db.Text
+  auditedAt   DateTime?   @map("audited_at")
+  auditorId   String?     @map("auditor_id")
+  
+  // Foreign keys
+  merchantId  String      @map("merchant_id")
+  
+  createdAt   DateTime    @default(now()) @map("created_at")
+  updatedAt   DateTime    @updatedAt @map("updated_at")
+  
+  // Relations
+  merchant    User        @relation("MerchantHotels", fields: [merchantId], references: [id])
+  rooms       Room[]
+  audits      Audit[]
+  
+  @@map("hotels")
+}
+
+model Room {
+  id            String      @id @default(uuid())
+  name          String
+  area          Float?      // 面积（平方米）
+  bedType       BedType     @map("bed_type")
+  windowType    WindowType  @map("window_type")
+  hasBreakfast  Boolean     @default(false) @map("has_breakfast")
+  cancelPolicy  String?     @map("cancel_policy")
+  
+  // Pricing
+  priceWeekday  Float       @map("price_weekday")
+  priceHoliday  Float       @map("price_holiday")
+  
+  // Inventory
+  stock         Int         @default(10)
+  
+  // Foreign key
+  hotelId       String      @map("hotel_id")
+  
+  createdAt     DateTime    @default(now()) @map("created_at")
+  updatedAt     DateTime    @updatedAt @map("updated_at")
+  
+  // Relations
+  hotel         Hotel       @relation(fields: [hotelId], references: [id], onDelete: Cascade)
+  
+  @@map("rooms")
+}
+
+model Audit {
+  id          String      @id @default(uuid())
+  status      HotelStatus
+  reason      String?     @db.Text
+  
+  // Foreign keys
+  hotelId     String      @map("hotel_id")
+  auditorId   String      @map("auditor_id")
+  
+  createdAt   DateTime    @default(now()) @map("created_at")
+  
+  // Relations
+  hotel       Hotel       @relation(fields: [hotelId], references: [id], onDelete: Cascade)
+  auditor     User        @relation("AuditorAudits", fields: [auditorId], references: [id])
+  
+  @@map("audits")
+}

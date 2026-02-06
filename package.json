@@ -1,0 +1,23 @@
+{
+  "name": "hotel-booking-platform",
+  "version": "1.0.0",
+  "description": "智慧出行酒店预订平台",
+  "private": true,
+  "scripts": {
+    "dev:server": "pnpm --filter @hotel/server dev",
+    "dev:mobile": "pnpm --filter @hotel/user-mobile dev",
+    "dev:pc": "pnpm --filter @hotel/merchant-pc dev",
+    "build:server": "pnpm --filter @hotel/server build",
+    "build:mobile": "pnpm --filter @hotel/user-mobile build",
+    "build:pc": "pnpm --filter @hotel/merchant-pc build",
+    "db:migrate": "pnpm --filter @hotel/server db:migrate",
+    "db:generate": "pnpm --filter @hotel/server db:generate"
+  },
+  "devDependencies": {
+    "typescript": "^5.3.0"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "pnpm": ">=8.0.0"
+  }
+}

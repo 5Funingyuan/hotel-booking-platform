@@ -1,0 +1,14 @@
+{
+  "name": "@hotel/shared-types",
+  "version": "1.0.0",
+  "description": "共享类型定义",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch"
+  },
+  "devDependencies": {
+    "typescript": "^5.3.0"
+  }
+}

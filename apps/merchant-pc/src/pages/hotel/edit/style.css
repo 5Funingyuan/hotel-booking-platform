@@ -1,0 +1,16 @@
+.steps-content {
+  min-height: 400px;
+  padding: 24px;
+  background: #fafafa;
+  border-radius: 8px;
+  margin-top: 16px;
+}
+
+.steps-action {
+  margin-top: 24px;
+}
+
+.ant-upload-list-picture-card-container {
+  width: 120px;
+  height: 120px;
+}

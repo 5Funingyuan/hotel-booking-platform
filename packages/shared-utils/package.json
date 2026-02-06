@@ -1,0 +1,34 @@
+{
+  "name": "@hotel/shared-utils",
+  "version": "1.0.0",
+  "description": "共享工具函数",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "require": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    },
+    "./china-regions": {
+      "import": "./dist/china-regions.js",
+      "require": "./dist/china-regions.js",
+      "types": "./dist/china-regions.d.ts"
+    },
+    "./china-regions-full": {
+      "import": "./dist/china-regions-full.js",
+      "require": "./dist/china-regions-full.js",
+      "types": "./dist/china-regions-full.d.ts"
+    }
+  },
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch"
+  },
+  "devDependencies": {
+    "@types/minimatch": "^6.0.0",
+    "@types/node": "^20.19.30",
+    "minimatch": "^10.1.2",
+    "typescript": "^5.3.0"
+  }
+}
