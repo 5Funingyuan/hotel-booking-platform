@@ -53,3 +53,11 @@ TARO_APP_API_HOST=你的局域网IP pnpm --filter @hotel/user-mobile dev:h5
 - `POST /hotels/:hotelId/rooms` 新增房型（商户）
 - `PUT /hotels/:hotelId/rooms/:roomId` 更新房型（商户）
 - `DELETE /hotels/:hotelId/rooms/:roomId` 删除房型（商户）
+
+
+## 数据库表结构
+
+- **users**：用户表（商户 / 管理员）
+- **hotels**：酒店表
+- **rooms**：房型表
+- **audits**：审核记录表
