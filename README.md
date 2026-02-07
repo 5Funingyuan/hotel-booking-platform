@@ -26,7 +26,7 @@
 - React Hook Form + Zod（表单校验
 
 **用户端（H5/小程序）**
-- Taro 3.x + React（按照题目技术栈要求使用Taro，将一套代码编译为 H5、小程序等多端
+- Taro + React + Webpack（按照题目技术栈要求使用Taro，将一套代码编译为 H5、小程序等多端
 - Taro UI
 - Zustand（同PC端
 - dayjs（实现简单的时间处理
